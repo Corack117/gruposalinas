@@ -19,7 +19,7 @@ class WorkerView(View):
             raise Http404
     
     def get(self, request, *args, **kwargs):
-        filters = json.loads(request.GET.get('data'))
+        filters = request.GET
         pk = self.kwargs.get('pk')
         self.serialaizer
         if not pk:
@@ -28,28 +28,31 @@ class WorkerView(View):
         else:
             workerFinded = self.get_object(pk)
             workersList = self.serialaizer.serialize([workerFinded])
-        return HttpResponse(workersList, self.content_type, status=201)
+        return HttpResponse(workersList, self.content_type, status=200)
      
      
     # ------------- Métodos Adicionales -------------
     def post(self, request, *args, **kwargs):
-        data = json.loads(request.POST.get('data'))
+        data = request.POST
         info = data.get('info')
         pk = self.kwargs.get('pk')
+        status = 200
         if info == 'new':
             workerFound = Worker()
+            status = 201
         elif info == 'update':
             workerFound = self.get_object(pk)
         if info =='delete':
             workerFound = self.get_object(pk)
             workerFound.delete()
-            return JsonResponse({}, status=200)
+            return JsonResponse({}, status=status)
             
         worker = WorkerModelForm(data=data, instance=workerFound)
         if worker.is_valid():
             worker.save()
-            return JsonResponse(worker.data, status=201)
-        return JsonResponse({} ,status=400)
+            return JsonResponse(worker.data, status=status)
+        status = 400
+        return JsonResponse({} ,status=status)
 
 from django.middleware.csrf import get_token
 class getCSRF(View):
