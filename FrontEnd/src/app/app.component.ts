@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiRequestsService } from './shared/api-requests.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FrontEnd';
+
+  constructor(private requestService: ApiRequestsService) {
+    this.requestService.getToken();
+  }
 }
