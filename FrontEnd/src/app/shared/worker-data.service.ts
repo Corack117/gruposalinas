@@ -27,7 +27,7 @@ export class WorkerDataService {
     return this.requestService.post(params)
   }
 
-  public updateWorker = (id: number, params: any) => {
+  public updateWorker = (id: number, params: FormData) => {
     this.requestService.setWorkerUrl(id);
     params.append('info', 'update');
     return this.requestService.post(params)
