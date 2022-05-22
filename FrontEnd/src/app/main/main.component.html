@@ -1,1 +1,66 @@
-<p>main works!</p>
+<div class="finder">
+  <div class="finder_content">
+    <h2>Busqueda de trabajador...</h2>
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Busqueda por ID...</mat-label>
+        <input type="number" matInput formControlName="searchById">
+        <button *ngIf="formGroup.value.searchById" matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('searchById')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button type="submit" class="applyFilterButton" mat-raised-button>
+        Buscar
+      </button>
+      <br/>
+      <button type="button" class="applyFilterButton" mat-raised-button
+        (click)="redirectTo('all')">
+        Ver todos los trabajadores
+      </button>
+    </form>
+  </div>
+</div>
+
+
+
+<div *ngIf="isShowModal" class="modal-data" (click)="hideModal($event)">
+  <div class="modal-container">
+    <table class="modal-table">
+      <tr><th><b>Información</b></th></tr>
+      <tr><th><b>Identificador:</b> {{worker.id_worker}}</th></tr>
+      <tr><th><b>Nombre:</b> {{worker.name}}</th></tr>
+      <tr><th><b>Crédito:</b> ${{worker.credito}}</th></tr>
+      <tr><th><b>Venta Total:</b> ${{worker.ventaTotal}}</th></tr>
+      <tr><th><b>Promedio:</b> {{worker.promedio}}%</th></tr>
+    </table>
+  </div>
+</div>
+
+<swal
+  #swalNotWorker
+  title="Ups! No encontramos nada"
+  html="No hay un trabajador con ese ID."
+  icon="error"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  iconColor: 'red',
+  timer: 2000
+  }">
+</swal>
+
+<swal
+  #swalError
+  title="Ups! Ocurrió un error"
+  html="Error de conexión con el servidor."
+  icon="error"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  iconColor: 'red'
+  }">
+<!--   timer: 2000 -->
+</swal>

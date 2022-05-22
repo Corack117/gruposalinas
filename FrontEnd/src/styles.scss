@@ -6,3 +6,9 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: rgba(103, 58, 183, 0.5);
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
