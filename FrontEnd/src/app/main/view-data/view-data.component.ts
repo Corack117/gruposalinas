@@ -49,7 +49,7 @@ export class ViewDataComponent implements OnInit {
 
   public showModal = (id: number) => {
     this.worker = this.workerData.workers.find((worker: any) => {
-      return worker.id === id
+      return worker.id_worker === id
     })
 
     this.isShowModal = !this.isShowModal;
@@ -65,7 +65,7 @@ export class ViewDataComponent implements OnInit {
     this.workerData.deleteWorker(id).subscribe(() => {
       this.swalSuccess.fire();
       this.workerData.workers = this.workerData.workers.filter(
-        (worker: any) => worker.id != id
+        (worker: any) => worker.id_worker != id
       );
     },
       () => this.swalError.fire()

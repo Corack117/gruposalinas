@@ -86,6 +86,7 @@ export class ModalWorkerComponent implements OnInit {
     } else {
       this.workerData.newWorker(params)
       .subscribe((res: any) => {
+        res.id_worker = parseInt(res.id_worker);
         this.workerData.workers.unshift(res);
         this.workerModal.closeWorkerModal();
         this.swalSuccess.fire();
