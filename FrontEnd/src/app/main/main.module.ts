@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 // SweetAlert2
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ViewDataComponent } from './view-data/view-data.component';
+import { MainComponent } from './main.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ViewDataComponent } from './view-data/view-data.component';
     PrincipalComponent,
     ModalWorkerComponent,
     FiltersComponent,
-    ViewDataComponent
+    ViewDataComponent,
+    MainComponent
   ],
   imports: [
     CommonModule,
