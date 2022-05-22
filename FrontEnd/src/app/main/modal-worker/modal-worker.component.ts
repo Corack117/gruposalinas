@@ -76,8 +76,9 @@ export class ModalWorkerComponent implements OnInit {
     if (this.typeModal == 'edit') {
       this.workerData.updateWorker(this.id, params)
       .subscribe((res: any) => {
+        res.id_worker = parseInt(res.id_worker)
         const position = this.workerData.workers.findIndex(
-          (worker: any) => worker.id == res.id
+          (worker: any) => worker.id_worker == this.id
         )
         this.workerData.workers[position] = res;
         this.workerModal.closeWorkerModal();
