@@ -1,1 +1,98 @@
-<p>modal-worker works!</p>
+<div class="modal-worker" (click)="hideModal($event)">
+  <form class="modal-container" [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>ID</mat-label>
+      <input type="number" matInput formControlName="id_worker">
+      <button *ngIf="formGroup.value.id_worker" matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('id_worker')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name">
+      <button *ngIf="formGroup.value.name" matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('name')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Crédito</mat-label>
+      <input type="number" matInput formControlName="credito">
+      <button *ngIf="formGroup.value.credito" matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('credito')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Venta Total</mat-label>
+      <input type="number" matInput formControlName="ventaTotal">
+      <button *ngIf="formGroup.value.ventaTotal" matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('ventaTotal')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Promedio</mat-label>
+      <input type="number" matInput formControlName="promedio">
+      <button *ngIf="formGroup.value.promedio" matSuffix mat-icon-button aria-label="Clear" (click)="clearControl('promedio')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="optionButtons">
+      <button *ngIf="typeModal == 'edit'" type="submit" mat-raised-button>
+        Editar
+      </button>
+
+      <button *ngIf="typeModal != 'edit'" type="submit" mat-raised-button>
+        Crear
+      </button>
+
+      <button (click)="workerModal.closeWorkerModal()" mat-raised-button>
+        Cerrar
+      </button>
+    </div>
+  </form>
+</div>
+
+<swal
+  #swalSuccess
+  title="Completado"
+  text="Se actualizaron los datos con éxito"
+  icon="success"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  timer: 1000 }">
+</swal>
+
+<swal
+  #swalError
+  title="Ups! Datos Invalidos"
+  html="Los campos del formulario no están llenados correctamente."
+  icon="info"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  iconColor: 'red'
+  }">
+<!--   timer: 2000 -->
+</swal>
+
+
+<swal
+  #swalErrorConection
+  title="Ups! Ocurrió un error"
+  html="Error de conexión con el servidor."
+  icon="error"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  iconColor: 'red'
+  }">
+<!--   timer: 2000 -->
+</swal>
