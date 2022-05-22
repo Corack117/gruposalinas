@@ -1,0 +1,32 @@
+.filter-card {
+  border-radius: 3px;
+  background-color: transparent;
+
+  .inputFilters {
+    display: flex;
+    justify-content: center;
+
+    button, input {
+        color: white;
+    }
+
+  }
+
+  .applyFilterButton {
+    width: 100%;
+    box-shadow: none;
+    color: white;
+    border-radius: 0;
+    background-color: #673ab7;
+  }
+
+  .applyFilterButton:hover {
+    background-color: #522a99;
+  }
+}
+
+mat-form-field {
+  width: 80%;
+  max-width: 500px;
+  margin: auto 10px;
+}

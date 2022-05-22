@@ -1,1 +1,33 @@
-<p>filters works!</p>
+<div class="filter-card">
+  <h2 class="text-center pt-3">Filtros</h2>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="inputFilters">
+      <mat-form-field appearance="fill">
+        <mat-label>Busqueda por nombre...</mat-label>
+        <input matInput type="text" formControlName="searchByName">
+        <button *ngIf="formGroup.value.searchByName" matSuffix mat-icon-button aria-label="Clear" (click)="clearInput('searchByName')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <button type="submit" class="applyFilterButton" mat-raised-button>
+      Aplicar Filtro
+    </button>
+  </form>
+</div>
+
+
+<swal
+  #swalError
+  title="Ups! Ocurrió un error"
+  html="Error de conexión con el servidor."
+  icon="error"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  iconColor: 'red'
+  }">
+<!--   timer: 2000 -->
+</swal>
