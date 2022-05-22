@@ -42,11 +42,12 @@ class WorkerView(View):
             status = 201
         elif info == 'update':
             workerFound = self.get_object(pk)
+            workerFound.delete()
         if info =='delete':
             workerFound = self.get_object(pk)
             workerFound.delete()
             return JsonResponse({}, status=status)
-            
+        
         worker = WorkerModelForm(data=data, instance=workerFound)
         if worker.is_valid():
             worker.save()
