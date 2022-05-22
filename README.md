@@ -21,6 +21,8 @@
 * Puerto: `5432`
 * Extensión de la DB: `unaccent`
 
+Para restaurar la base de datos, usar el archivo 'backup_db'
+
 ## Instrucciones de Ejecución
 
 ### Para Django (Dentro de la carpeta BackEnd)
