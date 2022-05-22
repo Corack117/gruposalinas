@@ -1,0 +1,36 @@
+.principal-container {
+  padding: 0;
+  height: 100%;
+
+  max-width: 1200px;
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .newWorkerButton {
+    width: 100%;
+    box-shadow: none;
+    color: white;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .newWorkerButton:hover {
+    background-color: rgba(67, 48, 100, 0.7);
+  }
+
+  .data-container {
+    background: rgb(243, 243, 243);
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .principal-container {
+    border: none;
+  }
+}
