@@ -1,1 +1,74 @@
-<p>view-data works!</p>
+<div class="table-container">
+  <table>
+    <tr>
+      <th>Identificador</th>
+      <th (click)="orderBy('name')">Nombre</th>
+      <th (click)="orderBy('credito')">credito</th>
+      <th (click)="orderBy('ventaTotal')">Venta Total</th>
+      <th (click)="orderBy('promedio')">Promedio</th>
+      <th>Extras</th>
+    </tr>
+    <tr *ngFor="let worker of workerData.workers">
+      <td>{{worker?.id_worker}}</td>
+      <td>{{worker?.name}}</td>
+      <td>${{worker?.credito}}</td>
+      <td>${{worker?.ventaTotal}}</td>
+      <td>{{worker?.promedio}}%</td>
+      <td>
+        <button class="tableButton" (click)="showModal(worker.id_worker)" mat-raised-button>
+          Ver más
+        </button>
+        <button class="tableButton" (click)="workerModal.showWorkerModal(worker.id_worker)" mat-raised-button>
+          Editar
+        </button>
+        <button class="tableButton" (click)="deleteWorker(worker.id_worker)" mat-raised-button>
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<div *ngIf="isShowModal" class="modal-data" (click)="hideModal($event)">
+  <div class="modal-container">
+    <table class="modal-table">
+      <tr><th><b>Información</b></th></tr>
+      <tr><th><b>Identificador:</b> {{worker.id_worker}}</th></tr>
+      <tr><th><b>Nombre:</b> {{worker.name}}</th></tr>
+      <tr><th><b>Crédito:</b> ${{worker.credito}}</th></tr>
+      <tr><th><b>Venta Total:</b> ${{worker.ventaTotal}}</th></tr>
+      <tr><th><b>Promedio:</b> {{worker.promedio}}%</th></tr>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="workerModal.isShowModal() && (workerModal.workerLoaded | async)">
+  <app-modal-worker></app-modal-worker>
+</div>
+
+<swal
+  #swalSuccess
+  title="Completado"
+  text="Se eliminó el empleado con éxito"
+  icon="success"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  timer: 1000 }">
+</swal>
+
+<swal
+  #swalError
+  title="Ups! Ocurrió un error"
+  html="Error de conexión con el servidor."
+  icon="error"
+  [focusCancel]="true"
+  [swalOptions]="{
+  confirmButtonText: 'Cerrar',
+  heightAuto: false,
+  iconColor: 'red'
+  }">
+<!--   timer: 2000 -->
+</swal>
