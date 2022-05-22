@@ -71,7 +71,14 @@ export class ModalWorkerComponent implements OnInit {
     const params: FormData = new FormData();
     const controls = this.formGroup.controls;
     for (const [key, control] of Object.entries(controls)) {
-      params.append(key, control.value)
+      console.log('promedio' == key, control.value < 0)
+      if (key == 'promedio')
+        if (control.value < 0)
+          return this.swalError.fire();
+        else
+          params.append(key, control.value.toFixed(2))
+      else
+        params.append(key, control.value)
     }
     if (this.typeModal == 'edit') {
       this.workerData.updateWorker(this.id, params)
